@@ -11,8 +11,9 @@
                One use case of this structure is in one of my projects involving chunk based terrain rendering. The problem was that each chunk in the terrain required a unique texture, 
                and all the textures were stored in a limited array of textures. Because the only unique and known aspect of a chunk was its position in the world, I used said chunk positions as keys and paired
                them to indices in the array of textures, so that a texture could be easily corresponded to a chunk based on it's position. Given a list of chunks that need to be rendered, for each chunk, I would check if
-               its world position was already a key in the cache. If not, I insert said chunk position into the cache, and it is paired with the next available index into the array of textures. A texture is then generated at this index.
-               If the key does exist already, nothing happens. When actually rendering, a list of chunks to be rendered would be given to the GPU, as well as a parallel list of indices into the texture array 
+               its world position was already a key in the cache. If the key does exist already, nothing happens. If not, I insert said chunk position into the cache, and it is paired with 
+               the next available index into the array of textures. A texture is then generated at this index.
+               When actually rendering, a list of chunks to be rendered would be given to the GPU, as well as a parallel list of indices into the texture array 
                for a given chunk in the chunk list, that was obtained by using the functions of the below data structure. 
 */
 
