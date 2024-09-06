@@ -13,8 +13,8 @@
                them to indices in the array of textures, so that a texture could be easily corresponded to a chunk based on it's position. Given a list of chunks that need to be rendered, for each chunk, I would check if
                its world position was already a key in the cache. If the key does exist already, nothing happens. If not, I insert said chunk position into the cache, and it is paired with 
                the next available index into the array of textures. A texture is then generated at this index.
-               When actually rendering, a list of chunks to be rendered would be given to the GPU, as well as a parallel list of indices into the texture array 
-               for a given chunk in the chunk list, that was obtained by using the functions of the below data structure. 
+               When actually rendering, a list of chunks to be rendered would be given to the GPU, as well as a parallel list of indices into the texture array for a given chunk in the chunk list, 
+               that was obtained by using the functions of the below data structure. 
 */
 
 #include <iostream>
