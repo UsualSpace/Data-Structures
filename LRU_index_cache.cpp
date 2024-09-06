@@ -4,7 +4,7 @@
   Date Created: 8/24/2024
   Date Modified: 9/5/2024 
   Description: A slightly modified version of the LRU cache concept, in which instead of being able to insert a key and value pair, 
-               you can only enter in a key value, and the data structure will assign to this key an available index in an array or other container.
+               you can only enter in a key, and the data structure will assign to this key an available index in an array or other container.
                As the cache fills up, it assigns sequential indices to incoming keys. When all indices have been taken up or used (dependent on the capacity variable),
                The structure begins to follow the rules of Least Recently Used (LRU) principle, and evicts the least recently used/accessed key from the cache, and recycles its index
                to pair to the new incoming key. 
