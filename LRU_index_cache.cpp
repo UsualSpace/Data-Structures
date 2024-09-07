@@ -2,7 +2,7 @@
   Filename: LRUIndexCache.cpp
   Author: Abdurrahman Alyajouri
   Date Created: 8/24/2024
-  Date Modified: 9/5/2024 
+  Date Modified: 9/6/2024 
   Description: A slightly modified version of the LRU cache concept, in which instead of being able to insert a key and value pair, 
                you can only enter in a key, and the data structure will assign to this key an available index in an array or other container.
                As the cache fills up, it assigns sequential indices to incoming keys. When all indices have been taken up or used (dependent on the capacity variable),
@@ -17,28 +17,22 @@
                that was obtained by using the functions of the below data structure. 
 */
 
-#include <iostream>
-#include <unordered_map>
-#include <list>
-#include <utility>
-#include <iterator>
-
 template<typename K>
 class LRUIndexCache {
     public:
         typedef std::pair<K, int> kv;
         LRUIndexCache() {}
 
-        LRUIndexCache(int capacity) {
+        LRUIndexCache(const int& capacity) {
             this->capacity = capacity;
             this->used = 0;
         }
         
-        bool Exists(K key) {
+        bool Exists(const K& key) const {
             return kvmap.find(key) != kvmap.end();
         }
         
-        int Get(K key) {
+        int Get(const K& key) {
             if(Exists(key)) { // If the given key already exists in our cache...
                 // Make temporary copy of key-index pair.
                 kv temp = *kvmap[key]; 
@@ -62,17 +56,17 @@ class LRUIndexCache {
             return -1; //invalid index
         }
 
-        int GetUsed() {
+        int GetUsed() const {
             // May be useful to know how many spots have been taken up in the cache.
-            return used;
+            return this->used;
         }
 
-        int GetCapacity() {
+        int GetCapacity() const {
             // May be useful to know how many spots have been taken up in the cache.
-            return capacity;
+            return this->capacity;
         }
         
-        void Put(K key) { 
+        void Put(const K& key) { 
             if(Exists(key)) { // If the given key exists in our cache already...
                 // Make temporary copy of key-index pair. 
                 kv temp = *kvmap[key];
@@ -89,7 +83,7 @@ class LRUIndexCache {
                 // the new location of the key-value pair in the list (which is the back of the list since we just used 'push_back()').
                 kvmap[key] = prev(kvlist.end());
               
-            } else if(used + 1 > capacity) { // If the addition of one more key breaches capacity...
+            } else if(this->used + 1 > this->capacity) { // If the addition of one more key breaches capacity...
                 // Make a temporary copy of the value corresponding to the least recently used key (located at the front of list), 
                 // so we can assign it to the new key that will be added.
                 int temp_v = kvlist.begin()->second;
@@ -107,15 +101,15 @@ class LRUIndexCache {
                 kvmap[key] = prev(kvlist.end());
             } else { // Else...
                 // Push a new pair to the back of the list, consisting of the input key, and the next available index in our cache.
-                kvlist.push_back(std::make_pair(key, used));
+                kvlist.push_back(std::make_pair(key, this->used));
                 kvmap[key] = prev(kvlist.end());
-                ++used;
+                ++this->used;
             }
         }
 
         //Assuming a key can be printed via cout.
-        void PrintCacheState() {
-            std::cout << "========CacheState==========\n";
+        void PrintCacheState() const {
+            std::cout << "=========CacheState=========\n";
             for(auto const& [key, value] : kvlist) {
                 std::cout << key << " : " << value << std::endl;
             }
