@@ -66,6 +66,11 @@ class LRUIndexCache {
             // May be useful to know how many spots have been taken up in the cache.
             return used;
         }
+
+        int GetCapacity() {
+            // May be useful to know how many spots have been taken up in the cache.
+            return capacity;
+        }
         
         void Put(K key) { 
             if(Exists(key)) { // If the given key exists in our cache already...
