@@ -1,5 +1,5 @@
 /*
-  Filename: LRU_inde_cache.cpp
+  Filename: LRU_index_cache.cpp
   Author: Abdurrahman Alyajouri
   Date Created: 8/24/2024
   Date Modified: 9/6/2024 
