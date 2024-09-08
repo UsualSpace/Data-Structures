@@ -9,7 +9,7 @@
                The structure begins to follow the rules of Least Recently Used (LRU) principle, and evicts the least recently used/accessed key from the cache, and recycles its index
                to pair to the new incoming key. 
                
-               TLDR: This structure assigns the integer index of the next available spot in some integer indexed fixed size container to an input key, based on LRU policies.
+               TLDR: This structure auto assigns to a key the integer index of the next available spot in some integer indexed fixed size container, based on LRU policies.
                
                One use case of this structure is in one of my projects involving chunk based terrain rendering. The problem was that each chunk in the terrain required a unique texture, 
                and all the textures were stored in a limited array of textures. Because the only unique and known aspect of a chunk was its position in the world, I used said chunk positions as keys and paired
