@@ -8,6 +8,9 @@
                As the cache fills up, it assigns sequential indices to incoming keys. When all indices have been taken up or used (dependent on the capacity variable),
                The structure begins to follow the rules of Least Recently Used (LRU) principle, and evicts the least recently used/accessed key from the cache, and recycles its index
                to pair to the new incoming key. 
+               
+               TLDR: This structure assigns the integer index of the next available spot in some integer indexed fixed size container to an input key, based on LRU policies.
+               
                One use case of this structure is in one of my projects involving chunk based terrain rendering. The problem was that each chunk in the terrain required a unique texture, 
                and all the textures were stored in a limited array of textures. Because the only unique and known aspect of a chunk was its position in the world, I used said chunk positions as keys and paired
                them to indices in the array of textures, so that a texture could be easily corresponded to a chunk based on it's position. Given a list of chunks that need to be rendered, for each chunk, I would check if
